@@ -12,6 +12,7 @@ import co.com.application.ecommerce.authorization.JWT;
 import co.com.application.ecommerce.dto.AuthRequest;
 import co.com.application.ecommerce.dto.AuthResponse;
 import co.com.application.ecommerce.dto.CodeDTO;
+import co.com.application.ecommerce.mail.EmailService;
 import co.com.application.ecommerce.model.Code;
 import co.com.application.ecommerce.model.User;
 import co.com.application.ecommerce.service.ICodeService;
@@ -26,6 +27,9 @@ public class LoginController {
 
 	@Autowired
 	private ICodeService codeService;
+	
+	@Autowired
+	private EmailService emailService;
 
 
 	@PostMapping(path = "/signin", consumes = "application/json", produces = "application/json")
@@ -38,8 +42,9 @@ public class LoginController {
 			code.setUsername(user.getUsername());
 			code.setEndPoint("/auth/login");
 			codeService.addCode(code);
+			code.setCodeNumber(0);// limpiar codigo por seguridad.
+			emailService.sendMessage(user.getEmail(),"Codigo de verificacion" , "Codigo de verficacion: " + code.getCodeNumber());
 			return new ResponseEntity<>(code, HttpStatus.OK);
-
 		} else {
 			return new ResponseEntity<>(new Code(), HttpStatus.FORBIDDEN);
 		}

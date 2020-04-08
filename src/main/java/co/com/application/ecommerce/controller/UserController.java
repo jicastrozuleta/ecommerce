@@ -25,12 +25,13 @@ public class UserController {
 
 	@PostMapping(path = "/user", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO) {
-		if (userDTO == null || userDTO.getUsername().isBlank() || userDTO.getPassword().isBlank()) {
+		if (userDTO == null || userDTO.getUsername().isBlank() || userDTO.getPassword().isBlank() || userDTO.getEmail().isBlank()) {
 			return new ResponseEntity<>(new User(), HttpStatus.BAD_REQUEST);
 		}
 		User user = new User();
 		user.setUsername(userDTO.getUsername());
 		user.setPassword(userDTO.getPassword());
+		user.setEmail(userDTO.getEmail());
 		userService.addUser(user);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}

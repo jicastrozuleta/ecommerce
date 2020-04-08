@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -31,6 +32,11 @@ public class User implements UserDetails {
 	@NotEmpty
 	@Column(nullable = false)
 	private String password;
+
+	@Email
+	@NotEmpty
+	@Column(nullable = false)
+	private String email;
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
@@ -62,6 +68,14 @@ public class User implements UserDetails {
 	@Override
 	public String getUsername() {
 		return this.username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

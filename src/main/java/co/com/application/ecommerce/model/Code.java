@@ -12,8 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 @Entity
 @Table(name = "codes")
 public class Code implements Serializable {
