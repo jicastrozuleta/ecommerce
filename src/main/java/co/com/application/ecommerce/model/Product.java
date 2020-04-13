@@ -34,10 +34,6 @@ public class Product implements Serializable {
 	@Column(nullable = false)
 	private String description;
 
-	@NotEmpty
-	@Column(nullable = false)
-	private int categoryType;
-
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<ImageProduct> images;
 
@@ -48,8 +44,6 @@ public class Product implements Serializable {
 	@JoinColumn(name = "idCategory")
 	private Category category;
 
-
-	
 	public Long getId() {
 		return id;
 	}
@@ -72,14 +66,6 @@ public class Product implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getCategoryType() {
-		return categoryType;
-	}
-
-	public void setCategoryType(int categoryType) {
-		this.categoryType = categoryType;
 	}
 
 	public Set<ImageProduct> getImages() {

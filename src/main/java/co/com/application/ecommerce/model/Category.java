@@ -88,6 +88,7 @@ public class Category implements Serializable {
 		this.image = image;
 	}
 
+	@JsonIgnore
 	public Set<Product> getProducts() {
 		return products;
 	}

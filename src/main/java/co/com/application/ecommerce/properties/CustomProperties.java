@@ -11,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 
 @Configuration
 @EnableConfigurationProperties
-@PropertySource(encoding = "UTF-8", ignoreResourceNotFound = false, value = {"classpath:custom.properties"})
+@PropertySource(encoding = "UTF-8", ignoreResourceNotFound = false, value = { "classpath:custom.properties" })
 @ConfigurationProperties
 @Validated
 public class CustomProperties {
@@ -23,6 +23,14 @@ public class CustomProperties {
 	@NotNull
 	@Value("${path_img_product}")
 	private String pathToProductImages;
+
+	@NotNull
+	@Value("${decimal_for_usd}")
+	private String decimalForUSD;
+
+	@NotNull
+	@Value("${decimal_for_cop}")
+	private String decimalForCOP;
 
 	public String getPathToCategoryImages() {
 		return pathToCategoryImages;
@@ -38,5 +46,21 @@ public class CustomProperties {
 
 	public void setPathToProductImages(String pathToProductImages) {
 		this.pathToProductImages = pathToProductImages;
+	}
+
+	public String getDecimalForUSD() {
+		return decimalForUSD;
+	}
+
+	public void setDecimalForUSD(String decimalForUSD) {
+		this.decimalForUSD = decimalForUSD;
+	}
+
+	public String getDecimalForCOP() {
+		return decimalForCOP;
+	}
+
+	public void setDecimalForCOP(String decimalForCOP) {
+		this.decimalForCOP = decimalForCOP;
 	}
 }
